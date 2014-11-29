@@ -25,7 +25,10 @@ angular.module('starter', ['ionic'])
     $scope.submitEntry = function() {
         $scope.entrystatus = "Entry Submitted";
         // Simple POST request example (passing data) :
-$http.post('http://hackathonbackend.azurewebsites.net/add', {password:$scope.password, name:$scope.firstName, lastName:$scope.lastName }).
+$http.post('http://hackathonbackend.azurewebsites.net/add', 
+           {password:$scope.formsdata.password, 
+           name:$scope.formsdata.firstName, 
+         lastName:$scope.formsdata.lastName }).
   success(function(data, status, headers, config) {
     // this callback will be called asynchronously
     // when the response is available
@@ -39,80 +42,20 @@ $http.post('http://hackathonbackend.azurewebsites.net/add', {password:$scope.pas
   });
         
     };
+    
+    $scope.formsdata = {};
     $scope.clearEntries = function() {
-        $scope.firstName = '';
-        $scope.lastName = '';
+        $scope.formsdata.firstName = '';
+        $scope.formsdata.lastName = '';
 
-        $scope.password = '';
-        $scope.submissionTitle = '';
-        $scope.submissionDate = '';
+        $scope.formsdata.password = '';
+        $scope.formsdata.submissionTitle = '';
+        $scope.formsdata.submissionDate = '';
     };
-    $scope.firstName = '';
-    $scope.lastName = '';
+    $scope.formsdata.firstName = '';
+    $scope.formsdata.lastName = '';
 
-    $scope.password = 'password';
-    $scope.submissionTitle = '';
-    $scope.submissionDate = '';
+    $scope.formsdata.password = 'password';
+    $scope.formsdata.submissionTitle = '';
+    $scope.formsdata.submissionDate = '';
 }]);
-
-/*
-.config(function($stateProvider, $urlRouterProvider) {
-
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
-
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-
-    // Each tab has its own nav history stack:
-
-    .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      }
-    })
-
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    });
-
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
-
-});*/
